@@ -21,6 +21,7 @@ class ColorSelectionViewController: UIViewController {
         case blue
         case yellow
         case green
+        case orange
 
         var uiColor: UIColor {
             switch self {
@@ -36,6 +37,8 @@ class ColorSelectionViewController: UIViewController {
                 return .yellow
             case .green:
                 return .green
+            case .orange:
+                return .init(red: 1, green: 165/255, blue: 0, alpha: 1)
             }
         }
     }
@@ -62,11 +65,6 @@ class ColorSelectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let blurredView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
-        self.view.addSubview(blurredView)
-        blurredView.frame = self.view.frame
-        blurredView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-
         buttons = []
         for color in colors {
             buttons.append(createButton(forColor: color))
@@ -74,8 +72,9 @@ class ColorSelectionViewController: UIViewController {
         let stackView = UIStackView(arrangedSubviews: buttons)
         stackView.axis = .horizontal
         stackView.distribution = .equalSpacing
-        blurredView.contentView.addSubview(stackView)
-        stackView.frame = blurredView.frame
+
+        stackView.frame = view.frame
+        view.addSubview(stackView)
         stackView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 
     }

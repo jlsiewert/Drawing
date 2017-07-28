@@ -17,8 +17,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, ColorSelectionViewCon
 
     @IBOutlet var colorButton: UIButton!
 
+    @IBOutlet var overlayView: UIView!
+
     lazy var colorSelectionViewController: ColorSelectionViewController = {
-        let colors: [ColorSelectionViewController.ColorSelection] = [.red, .green, .blue, .yellow, .gray, .white]
+        let colors: [ColorSelectionViewController.ColorSelection] = [.red, .green, .blue, .yellow, .gray, .orange]
         let vc = ColorSelectionViewController(colors: colors)
         vc.delegate = self
         return vc
@@ -57,6 +59,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ColorSelectionViewCon
         // Pause the view's session
         sceneView.session.pause()
         drawingController.clear()
+        toggleOverlay(visible: true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -76,8 +79,14 @@ class ViewController: UIViewController, ARSCNViewDelegate, ColorSelectionViewCon
         colorSelectionViewController.modalPresentationStyle = .popover
         present(colorSelectionViewController, animated: true, completion: nil)
         let popoverController = colorSelectionViewController.popoverPresentationController!
-        popoverController.sourceView = sender
+        popoverController.sourceView = sender.superview
         popoverController.sourceRect = sender.frame
+    }
+
+    func toggleOverlay(visible: Bool) {
+        UIView.animate(withDuration: 0.3) {
+            self.overlayView.isHidden = !visible
+        }
     }
 
     // MARK: - ColorSelectionViewControllerDelegate
@@ -104,12 +113,11 @@ class ViewController: UIViewController, ARSCNViewDelegate, ColorSelectionViewCon
     }
     
     func sessionWasInterrupted(_ session: ARSession) {
-        // Inform the user that the session has been interrupted, for example, by presenting an overlay
-        
+        toggleOverlay(visible: true)
     }
     
     func sessionInterruptionEnded(_ session: ARSession) {
-        // Reset tracking and/or remove existing anchors if consistent tracking is required
+        toggleOverlay(visible: false)
         
     }
 }

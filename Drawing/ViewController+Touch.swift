@@ -16,6 +16,7 @@ extension ViewController {
         }
         let worldPosition = cameraPosition + getDirection(for: location, in: sceneView)
         drawingController.handleNextPoint(worldPosition)
+        drawingController.endLine()
     }
     
     @IBAction func handleDrag(_ sender: UIPanGestureRecognizer) {

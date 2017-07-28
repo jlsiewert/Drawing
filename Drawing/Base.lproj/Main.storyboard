@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13168.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13147.4"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tXr-a1-R10">
+            <objects>
+                <viewController id="BV1-FR-VrT" customClass="ViewController" customModule="drawing" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dSa-lw-pGx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xYG-Pe-tsF">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="ER7-fU-otn" appends="YES" id="0yr-wU-Y4p"/>
+                                    <outletCollection property="gestureRecognizers" destination="LYb-mn-dWJ" appends="YES" id="CVC-lU-D9C"/>
+                                </connections>
+                            </arscnView>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gMe-Cs-UDp">
+                                <rect key="frame" x="0.0" y="28" width="96" height="48"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o05-55-yTd">
+                                        <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="bgC-JU-Cvl"/>
+                                            <constraint firstAttribute="width" constant="48" id="dZn-W8-RZo"/>
+                                        </constraints>
+                                        <state key="normal" image="ic_autorenew_48pt"/>
+                                        <connections>
+                                            <action selector="reloadButtonpressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="iBu-rP-J90"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nJV-eK-krC">
+                                        <rect key="frame" x="48" y="0.0" width="48" height="48"/>
+                                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" image="ic_border_color_48pt"/>
+                                        <connections>
+                                            <action selector="colorSelectionButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="2jF-W4-BdC"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="HpR-Bd-LRU" firstAttribute="bottom" secondItem="xYG-Pe-tsF" secondAttribute="bottom" id="0u3-Rt-eER"/>
+                            <constraint firstItem="xYG-Pe-tsF" firstAttribute="top" secondItem="HpR-Bd-LRU" secondAttribute="top" id="CmI-8L-WSh"/>
+                            <constraint firstItem="xYG-Pe-tsF" firstAttribute="leading" secondItem="HpR-Bd-LRU" secondAttribute="leading" id="Pux-W2-LrA"/>
+                            <constraint firstItem="gMe-Cs-UDp" firstAttribute="top" secondItem="HpR-Bd-LRU" secondAttribute="top" constant="8" id="cdR-zg-fKq"/>
+                            <constraint firstItem="HpR-Bd-LRU" firstAttribute="trailing" secondItem="xYG-Pe-tsF" secondAttribute="trailing" id="vyC-wN-7cZ"/>
+                            <constraint firstItem="gMe-Cs-UDp" firstAttribute="leading" secondItem="HpR-Bd-LRU" secondAttribute="leading" id="wfd-cF-Csd"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="HpR-Bd-LRU"/>
+                    </view>
+                    <connections>
+                        <outlet property="colorButton" destination="nJV-eK-krC" id="XIn-Yc-1nM"/>
+                        <outlet property="sceneView" destination="xYG-Pe-tsF" id="zdg-DC-6Nf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="ER7-fU-otn">
+                    <connections>
+                        <action selector="handleTouch:" destination="BV1-FR-VrT" id="nRB-vh-R4o"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="LYb-mn-dWJ">
+                    <connections>
+                        <action selector="handleDrag:" destination="BV1-FR-VrT" id="k74-zf-jrp"/>
+                    </connections>
+                </panGestureRecognizer>
+            </objects>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ic_autorenew_48pt" width="48" height="48"/>
+        <image name="ic_border_color_48pt" width="48" height="48"/>
+    </resources>
+</document>
